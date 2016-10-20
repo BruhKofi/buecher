@@ -1,0 +1,894 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+
+// "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+
+/******* mixins, variables, etc. *******/
+
+@import url(https://fonts.googleapis.com/css?family=Lato:400,700italic,700,300);
+
+$white: #ffffff;
+$gray-medium-light: #eaeaea;
+$ken-background-gray: #efefef;
+$ken-teal: #39CCCC;
+$ken-lime: #01FF70;
+$ken-green: #2ECC40;
+$ken-aqua: #7FDBFF;
+$ken-blue: #0074D9;
+$ken-navy: #001f3f;
+$ken-maroon: #85144b;
+
+$twitter: #00aced;
+$facebook: #3b5998;
+$googleplus: #dd4b39;
+$twitter-hover: rgb(0, 200, 255);
+$facebook-hover: rgb(59, 100, 210);
+$googleplus-hover: rgb(255, 75, 57);
+
+$ken-theme: $ken-blue;
+
+$default-border-radius: 10px;
+
+
+@mixin box_sizing {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+@mixin green_button {
+  border: 2px solid $ken-lime;
+  color: $ken-lime;
+  font-weight: bold;
+  background-color: #fff;
+  padding: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  outline: none;
+  transition: all 300ms;
+  &:hover {
+    background-color: $ken-lime;
+    color: #fff;
+    text-decoration: none;
+  }
+}
+
+@mixin blue_button {
+  border: 2px solid $ken-teal;
+  color: $ken-teal;
+  font-weight: bold;
+  background-color: #fff;
+  padding: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  outline: none;
+  transition: all 300ms;
+  &:hover {
+    background-color: $ken-teal;
+    color: #fff;
+    text-decoration: none;
+  }
+}
+
+@mixin red_price {
+  font-size: 17px;
+  padding: 8px 12px;
+  color: tomato;
+  border: 2px solid;
+  border-radius: 18px;
+  background-color: #fff;
+}
+
+/******* icons *******/
+
+@font-face {
+  font-family: 'icomoon';
+  src:font-url('fonts/icomoon.eot?g5f8cy');
+  src:font-url('fonts/icomoon.eot?g5f8cy#iefix') format('embedded-opentype'),
+    font-url('fonts/icomoon.ttf?g5f8cy') format('truetype'),
+    font-url('fonts/icomoon.woff?g5f8cy') format('woff'),
+    font-url('fonts/icomoon.svg?g5f8cy#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  font-family: 'icomoon';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-mail:before {
+  content: "\e906";
+}
+.icon-edit:before {
+  content: "\e901";
+}
+.icon-paper-plane:before {
+  content: "\e907";
+}
+.icon-envelope:before {
+  content: "\e908";
+}
+.icon-edit2:before {
+  content: "\e902";
+}
+.icon-pencil:before {
+  content: "\e903";
+}
+.icon-google-plus2:before {
+  content: "\e809";
+}
+.icon-twitter2:before {
+  content: "\e80a";
+}
+.icon-chevron-down:before {
+  content: "\e800";
+}
+.icon-facebook2:before {
+  content: "\e802";
+}
+.icon-bell:before {
+  content: "\e900";
+}
+.icon-bin:before {
+  content: "\e801";
+}
+.icon-mail2:before {
+  content: "\e904";
+}
+.icon-mail3:before {
+  content: "\e905";
+}
+
+
+
+
+
+
+/******* universal *******/
+
+body {
+  font-family: 'Lato', sans-serif;
+  padding-top: 80px;
+  overflow-x: hidden;
+  &.static-page-layout {
+    //background-color: $ken-theme;
+    //padding-top: 0;
+  }
+}
+
+section {
+  overflow: auto;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.center {
+  text-align: center;
+}
+
+.center h1 {
+  margin-bottom: 10px;
+}
+
+
+
+/******* typography *******/
+
+h1, 
+h2,
+h3,
+h4,
+h5, 
+h6 {
+  line-height: 1;
+}
+
+
+h1 {
+  font-size: 3em;
+  letter-spacing: -2px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.2em;
+  letter-spacing: -0.5px;
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: normal;
+  color: #777;
+}
+
+p {
+  font-size: 1.1em;
+  line-height: 1.7em;
+}
+
+/******* header *******/
+
+#logo {
+  float: left;
+  margin-right: 10px;
+  font-size: 1.7em;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  padding-top: 9px;
+  font-weight: bold;
+  &:hover {
+    color: #fff;
+    text-decoration: none;
+  }
+}
+
+ul.navbar-nav {
+  > li > a {
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding-bottom: 12px;
+    border-bottom: 3px solid $ken-theme;
+    transition: all 200ms;
+    &:hover,
+    &:focus {
+      border-bottom: 3px solid #fff;
+    }
+  }
+}
+
+.header-avatar {
+  img.avatar {
+    float: right;
+    margin: 0 0 0 10px;
+    position: relative;
+    bottom: 7px;
+    border: 1px solid #fff;
+  }
+}
+
+header.navbar-inverse {
+  background-color: $ken-theme;
+  border: none;
+  box-shadow: 0 5px 12px #888;
+  .navbar-nav > li > a {
+    color: #efefef;
+  }
+}
+
+
+.navbar-inverse .navbar-nav > .open > a, 
+.navbar-inverse .navbar-nav > .open > a:hover, 
+.navbar-inverse .navbar-nav > .open > a:focus {
+  background-color: $ken-theme;
+  border-color: $ken-theme;
+}
+
+form.navbar-form {
+  display: -webkit-inline-flex;
+  display: -ms-inline-flex;
+  display: inline-flex;
+  margin: 0;
+  float: left;
+  position: relative;
+  top: 12px;
+  left: 1.2em;
+  width: 300px;
+  input[type="text"] {
+    padding: 3px;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    border: none;
+    outline: none;
+  }
+  button {
+    height: 26px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    padding: 0 8px;
+    outline: none;
+  }
+}
+
+.dropdown-toggle.notification {
+  position: relative;
+  padding-bottom: 11px;
+}
+
+.icon-bell {
+  font-size: 1.2em;
+}
+
+.notification_count,
+.unread_messages_count {
+    position: absolute;
+    background: tomato;
+    border-radius: 50%;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    font-size: 0.7em;
+    padding: 3px;
+    line-height: 0.8;
+    top: 10px;
+    right: 6px;
+}
+
+.dropdown-menu.notifications {
+  max-height: 250px;
+  overflow: auto;
+  .notification {
+    border-bottom: 1px solid #efefef;
+  }
+  .clear_notifications a {
+    text-align: center;
+    font-weight: bold;
+    color: $ken-blue;
+  }
+}
+
+/******* footer *******/
+
+footer {
+  margin-top: 45px;
+  padding-top: 5px;
+  border-top: 1px solid $gray-medium-light;
+  color: #777;
+  a {
+    color: $gray;
+    &:hover {
+      color: $gray-darker;
+    }
+  }
+  small {
+    float: left;
+  }
+  ul {
+    float: right;
+    list-style: none;
+    li {
+      float: left;
+      margin-left: 15px;
+    }
+  }
+}
+
+/******* sidebar *******/
+
+.sidebar {
+  border-right: 1px solid #efefef;
+  padding-right: 0;
+  .nav-sidebar {
+    li > a {
+      color: $ken-navy;
+      &:hover {
+        background-color: $ken-teal;
+        color: #fff;
+      }
+    }
+  }
+}
+
+/******* flash message *******/
+
+.alert {  
+  border: 2px solid;
+  z-index: 200; 
+  .close {
+    font-size: 18px;
+    margin-left: 2em;
+  }
+}
+
+.layout-alert {
+  position: absolute;
+  right: 0;
+  top: -15px;
+  display: inline-block;
+  min-width: 200px;
+}
+
+
+/******* profile *******/
+aside {
+  section.user_info {
+    margin-top: 20px;
+    position: relative;
+  }
+  section {
+    padding: 10px 0;
+    margin-top: 20px;
+    &:first-child {
+      border: 0;
+      padding-top: 0;
+    }
+    span {
+      display: block;
+      margin-bottom: 3px;
+      line-height: 1;
+    }
+    h1 {
+      font-size: 1.4em;
+      text-align: left;
+      letter-spacing:  -1px;
+      margin-bottom: 3px;
+      margin-top: 0px;
+    }
+  }
+}
+
+.avatar {
+  margin-right: 10px;
+  border-radius: 50%;
+}
+.gravatar_edit {
+  margin-top: 15px;
+}
+
+
+/******* form *******/
+
+.form-panel {
+  .panel-heading {
+    background-color: $ken-teal;
+    color: #fff;
+  }
+  h1 {
+    margin: 0;
+    font-size: 2.3em;
+    letter-spacing: 0.5px;
+  }
+  label {
+    color: #555;
+    text-transform: lowercase;
+    font-size: 18px;
+  }
+  input, 
+  textarea,
+  select {
+    &:focus {
+      box-shadow: none;
+      outline: none;
+      border: 1.5px solid $ken-teal;
+    }
+  }
+}
+
+input, 
+textarea,
+select,
+.uneditable-input {
+  border: 1px solid #bbb;
+  width: 100%;
+  margin-bottom: 15px;
+  outline: none;
+  @include box_sizing;
+}
+
+input {
+  height: auto !important;
+}
+
+#error_explanation {
+  color: red;
+  ul {
+    color: red;
+    margin: 0 0 30px 0;
+  }
+}
+
+.field_with_errors {
+  @extend .has-error;
+  .form-control {
+    color: $state-danger-text;
+  }
+}
+
+.checkbox {
+  margin-top: -10px;
+  margin-bottom: 10px;
+  span {
+    margin-left: 20px;
+    font-weight: normal;
+  }
+}
+
+#session_remember_me {
+  width: auto;
+  margin-left: 0;
+}
+
+.button-success {
+  @include green_button;
+}
+
+.button-primary {
+  @include blue_button;
+}
+
+
+
+/******* Home page *******/
+
+#main-searchbar {
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+  max-width: 700px;
+  margin: auto;
+  border-radius: 7px;
+  box-shadow: 0 0 8px $ken-navy;
+  input[name="search"] {
+    padding: 10px;
+    font-size: 1.5em;
+    border: none;
+    outline: none;
+    border-top-left-radius:    7px;
+    border-bottom-left-radius: 7px;
+    color: $ken-navy;
+    margin-bottom: 0;
+  }
+  button{
+    height: 50px;
+    border-top-right-radius:    7px;
+    border-bottom-right-radius: 7px;
+    border: none;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    padding: 6px 18px;
+    font-size: 1.5em;
+    outline: none;
+    color: $ken-navy;
+  }
+}
+
+h1.homepage-headline {
+  font-weight: normal;
+  font-size: 56px;
+  color: $white;
+  text-shadow: -5px 5px 5px rgba(0,0,0, 0.5);
+  margin-bottom: 3.5rem;
+  margin-top: 10.5rem;
+}
+
+body.static-page-layout {
+  .main_container {
+    margin: 0;
+    width: 100%;
+    padding: 0;
+  }
+}
+
+.container .jumbotron {
+  background-image: image-url('desk.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 70%;
+  width: 100vw;
+  height: 80vh;
+  position: relative;
+  bottom: 30px;
+  border-radius: 0;
+}
+
+
+
+
+/******* Users index *******/
+
+.users {
+  list-style: none;
+  margin: 0;
+  li {
+    overflow: auto;
+    padding: 10px 0;
+    border-bottom: 1px solid $gray-lighter;
+  }
+}
+
+/******* Users show & index *******/
+.button-top-right {
+  position: absolute;
+  right: 2em;
+  top: 2em;
+  border-radius: 18px;
+}
+
+ul.listings {
+  list-style: none;
+  color: $ken-navy;
+  .seller-info {
+    margin-bottom: 10px;
+  }
+  .item {
+    border-bottom: 1px solid $gray-lighter;
+    padding: 20px;
+    border-radius: 5px;
+    position: relative;
+    .action_icons {
+      display: none;
+    }
+    &:hover {
+      background-color: $gray-lighter;
+      .action_icons {
+        display: inline;
+      }
+    }
+    .course-name {
+      background-color: $ken-teal;
+      color: #fff;
+      display: inline-block;
+      font-size: 1.5em;
+      padding: 5px 12px 6px;
+      border-radius: 18px;
+      margin-right: 0.7em;
+      margin-top: 0;
+    }
+  }
+  .title {
+    display: inline-block;
+    margin-top: 0;
+    a {
+      color: #333;
+    }
+  }
+}
+
+.price {
+  @include red_price;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.action_icons {
+  margin-left: 0.5em;
+  a {
+    font-size: 1.2em;
+    margin: 0 0.3em;
+    text-decoration: none;
+  }
+}
+
+.social_share {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  span {
+    cursor: pointer;
+    font-size: 1em;
+    margin: 0 1rem;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    color: #fff;
+    border-radius: 50%;
+    padding: 1em;
+    position:relative;
+    transition: all 200ms;
+    &.facebook {
+      background: $facebook;
+      &:hover {
+        background: $facebook-hover;
+      }
+    }
+    &.twitter {
+      background: $twitter;
+      &:hover {
+        background: $twitter-hover;
+      }
+    }
+    &.google-plus {
+      background: $googleplus;
+      &:hover {
+        background: $googleplus-hover;
+      }
+    }
+    &:before {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+}
+
+/******* Users edit *******/
+input#user_avatar {
+  border: none;
+}
+
+/******* Textbooks index *******/
+.search-term {
+  font-style: italic;
+  font-weight: bold;
+}
+
+
+/******* Textbooks show *******/
+
+.textbook-info-wrapper {
+  display: flex;
+  margin-bottom: 3.5em;
+
+  .seller-info, 
+  .item-info {
+    margin: 0.8em;
+  }
+
+  .seller-info {
+    width: 20%;
+    text-align: center;
+    background-color: $ken-background-gray;
+    padding: 0.8em; 
+    .avatar {
+      margin: 0 0 1em 0;
+    }
+  }
+
+  .item-info {
+    width: 80%;
+    margin-left: 0;
+    p {
+      background-color: $ken-background-gray;
+      padding: 0 1em;
+    }
+    .metadata-wrapper {
+      display: flex;
+    }
+    .metadata {
+      background-color: $ken-background-gray;
+      margin-left: 0.8em;
+      padding: 0 0.5em;
+      width: 100%;
+    }
+  }
+}
+
+.comments-wrapper {
+  width: 80%;
+  margin-left: 20%;
+  padding-left: 1.6em;
+  padding-right: 0.8em;
+}
+
+.textbooks-show-sidebar {
+  border-left: 1px solid #efefef;
+}
+
+/******* Conversations index *******/
+
+.conversations {
+  width: 80%;
+  max-width: 700px;
+  margin: auto;
+  .conversation {
+    padding: 1em;
+    margin-bottom: 1em;
+    background-color: #efefef;
+    &.unread {
+      border: 2px solid $ken-teal;
+    }
+  }
+}
+
+/******* Messages index *******/
+
+#message_form {
+  max-width: 450px;
+  margin: auto;
+}
+
+.messages {
+  
+  .message {
+    display: flex;
+    &.left {
+      justify-content: flex-start;
+    }
+    &.right {
+      justify-content: flex-end;
+    }
+    p {
+      background-color: #ffffea;
+      padding: 1em;
+      max-width: 40%;
+    }
+  }
+}
+
+
+
+
+
+
+
+/******* wishlist *******/
+
+.wishlist-item {
+  .course-name {
+    display: inline-block;
+    background-color: $ken-teal;
+    color: #fff;
+    padding: 8px 10px;
+    border-radius: 18px;
+  }
+  .avatar {
+    transition: all 200ms;
+    border: 2px solid #fff;
+    &:hover {
+      border: 2px solid $ken-teal;
+    }
+  }
+}
+
+/******* miscellaneous *******/
+
+.debug_dump {
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 45px;
+  @include box_sizing;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

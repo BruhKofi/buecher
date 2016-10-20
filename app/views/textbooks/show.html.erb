@@ -1,0 +1,65 @@
+<% provide(:title, @textbook.title) %>
+
+<div class="row">
+  <div class="col-md-9 textbooks-show-main">
+
+    <h1><%= @textbook.title %></h1>
+    <div class="textbook-info-wrapper">
+
+      <div class="seller-info">
+        <%= avatar_for @textbook.user, size: 120 %>
+        <strong><%= @textbook.user.name %></strong>
+        <% if logged_in? && !current_user?(@textbook.user) %>
+          <%= button_to 'Message Seller', conversations_path(buyer_id: current_user.id, seller_id: @textbook.user.id), method: :post %>
+        <% end %>
+      </div>
+
+      <div class="item-info">
+        <p><%= @textbook.user.name %> listed <%= time_ago_in_words(@textbook.created_at) %> ago</p>
+        <div class="metadata-wrapper">
+          <%= cover_image_for @textbook %>
+          <div class="metadata">
+            <strong>Subject: </strong><%= @textbook.subject.name %><br/>
+            <strong>Course Number: </strong><%= @textbook.course.name %><br/>
+            <strong>Description: </strong><%= @textbook.description %>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <hr>
+    
+
+    <div class="comments-wrapper">
+    
+      <% if @textbook.comments.any? %>
+        <div class="comments" id="comments">
+          <%= render @textbook.comments %>
+        </div>
+      <% end %>
+
+
+      <% if logged_in? %>
+        <h2>Leave a comment</h2>
+        <%= form_for(:comment, url: comment_path, remote: true) do |f| %>
+          <%= f.hidden_field :textbook_id, value: @textbook.id %>
+          <%= f.text_area :message %>
+          <%= f.submit "Submit", class: 'button-primary' %>
+        <% end %>
+      <% end %>
+    </div>
+    
+  </div>
+
+  <div class="col-md-3 textbooks-show-sidebar">
+    <% if @related.any? %>
+      <h3>Related</h3>
+      <ul>
+        <% @related.each do |textbook| %>
+          <%= cover_image_for(textbook) %>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+</div>

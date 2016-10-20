@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+ENG101:
+ name: ENG 101
+ users: ken terry
+
+CSC221:
+ name: CSC 221
+ users: ken peizhi aaron
+
+ACC201:
+ name: ACC 201
+ users: ken

@@ -1,0 +1,21 @@
+<% provide(:title, "All textbooks") %>
+<h1>Textbooks</h1>
+<% if params[:search] && @textbooks.present? %>
+  <h2 >Search for <span class="search-term"><%= sanitize(params[:search]) %></span> : <%= pluralize(@results_count, 'result') %></h2>
+<% end %>
+
+<div class="row">
+  <div class="col-md-12">
+    <% if @textbooks.present? %>
+      <ul class="listings">
+        <% @textbooks.each do |textbook| %>
+          <%= render 'textbook', object: textbook %>
+        <% end %>
+      </ul>
+
+      <%= will_paginate @textbooks %>
+    <% else %>
+      <h3>No Textbooks Found</h3>
+    <% end %>
+  </div>
+</div>
